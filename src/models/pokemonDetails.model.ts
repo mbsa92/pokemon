@@ -3,6 +3,6 @@ import { OtherModel } from "./other.model";
 export interface PokemonDetailsModel {
   name: string;
   weight: number;
-  abilites: AbilitiesModel[];
+  abilities: AbilitiesModel[];
   sprites: OtherModel;
 }

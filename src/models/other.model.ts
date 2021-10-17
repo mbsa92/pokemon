@@ -1,5 +1,7 @@
 export interface OtherModel {
   other: {
-    "official-artwork": string;
+    "official-artwork": {
+      front_default: string;
+    };
   };
 }

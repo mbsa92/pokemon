@@ -1,12 +1,28 @@
 <template>
   <div class="PokemonCard">
-    <h2>hej</h2>
+    <h2 class="PokemonCard-name">{{ pokemon.name }}</h2>
+    <div>
+      <img class="PokemonCard-img" :src="imgUrl" :alt="pokemon.name" />
+    </div>
+    <div>
+      <div class="PokemonCard-weight-wrapper">
+        <span>Weight:</span>
+        <span>{{ pokemon.weight }}</span>
+      </div>
+      <div class="PokemonCard-ability-wrapper">
+        <span>Ability: </span>
+        <div>
+          <span v-for="ability in pokemon.abilities" :key="ability.slot">
+            <span>{{ ability.ability.name }}</span>
+          </span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, computed, PropType } from "vue";
-import { vxm } from "../store/store";
+import { defineComponent, PropType, ref } from "vue";
 import { PokemonDetailsModel } from "@/models/pokemonDetails.model";
 
 export default defineComponent({
@@ -16,19 +32,11 @@ export default defineComponent({
       type: Object as PropType<PokemonDetailsModel>,
     },
   },
-  setup() {
-    const pokemonDetails = computed<PokemonDetailsModel[]>(
-      () => vxm.pokemon.allPokemonsWithDetails
+  setup(props) {
+    const imgUrl = ref(
+      props.pokemon?.sprites.other["official-artwork"].front_default
     );
-
-    onMounted(async () => {
-      await vxm.pokemon.getPokemons();
-      const pokomons = vxm.pokemon.allPokemon;
-      pokomons.results.forEach((pokemon: any) => {
-        vxm.pokemon.getDetails(pokemon.url);
-      });
-    });
-    return { pokemonDetails };
+    return { imgUrl };
   },
 });
 </script>

@@ -1,8 +1,11 @@
 <template>
   <div class="PokemonFrontpage">
     <h1>PokemonFrontpage</h1>
-    <PokemonCard />
-    {{ pokemonDetails }}
+    <div class="PokemonFrontpage-grid">
+      <div v-for="details in pokemonDetails" :key="details.name">
+        <PokemonCard :pokemon="details" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -30,20 +33,6 @@ export default defineComponent({
   },
 });
 </script>
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+<style lang="scss" scoped>
+@import "src/styles/views/pokemonFrontpage";
 </style>
