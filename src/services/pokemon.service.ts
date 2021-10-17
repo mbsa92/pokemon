@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export class PokemonService {
-  public async getPokemon() {
+  async getPokemon() {
     try {
       const response = await axios.get("https://pokeapi.co/api/v2/pokemon");
       return response.data;
@@ -10,7 +10,7 @@ export class PokemonService {
     }
   }
 
-  public async getPokemonDetails(url: string) {
+  async getPokemonDetails(url: string) {
     try {
       const response = await axios.get(url);
       return response.data;
