@@ -62,18 +62,6 @@
       }
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx}": [
-      "prettier --write \"**/*.{vue,ts}\"",
-      "vue-cli-service lint",
-      "git add"
-    ]
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
