@@ -3,11 +3,11 @@ import PokemonFrontpage from "@/views/PokemonFrontpage.vue";
 
 describe("PokemonFrontpage.vue", () => {
   it("renders component", () => {
-    const wrapper = shollowMountComponent();
+    const wrapper = shallowMountComponent();
     expect(wrapper.find(".PokemonFrontpage").exists()).toBe(true);
   });
 
-  function shollowMountComponent() {
+  function shallowMountComponent() {
     return shallowMount(PokemonFrontpage);
   }
 });

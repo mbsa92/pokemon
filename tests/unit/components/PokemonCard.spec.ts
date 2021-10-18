@@ -4,11 +4,11 @@ import { getPokemonDetails } from "../utils/testdata";
 
 describe("PokemonCard.vue", () => {
   it("renders component", () => {
-    const wrapper = shollowMountComponent();
+    const wrapper = shallowMountComponent();
     expect(wrapper.find(".PokemonCard").exists()).toBe(true);
   });
 
-  function shollowMountComponent() {
+  function shallowMountComponent() {
     return shallowMount(PokemonCard, {
       props: {
         pokemon: getPokemonDetails,
