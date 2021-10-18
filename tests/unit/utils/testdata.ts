@@ -18,6 +18,7 @@ export function getPokemonDetails(): PokemonDetailsModel {
   return {
     name: "test",
     weight: 71,
+    height: 80,
     abilities: [
       {
         ability: { name: "bla", url: "https//test.dk" },

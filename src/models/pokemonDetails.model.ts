@@ -5,4 +5,5 @@ export interface PokemonDetailsModel {
   weight: number;
   abilities: AbilitiesModel[];
   sprites: OtherModel;
+  height: number;
 }

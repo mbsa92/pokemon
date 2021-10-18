@@ -9,6 +9,10 @@
         <span>Weight:</span>
         <span>{{ pokemon.weight }}</span>
       </div>
+      <div class="PokemonCard-weight-wrapper">
+        <span>Height:</span>
+        <span>{{ pokemon.height }}</span>
+      </div>
       <div class="PokemonCard-ability-wrapper">
         <span>Ability: </span>
         <div>
