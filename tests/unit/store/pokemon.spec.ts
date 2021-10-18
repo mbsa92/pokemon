@@ -6,10 +6,12 @@ import { pokemonService } from "@/services/pokemon.service";
 describe("pokemon.ts", () => {
   it("can get pokemon", async () => {
     const pokemon = getPokemon();
+    const limit = "0";
+
     spyOn(pokemonService, "getPokemon").and.returnValue(
       Promise.resolve(pokemon)
     );
-    vxm.pokemon.getPokemons();
+    vxm.pokemon.getPokemons(limit);
     await flushPromises();
     expect(vxm.pokemon.allPokemon).toEqual(pokemon);
   });

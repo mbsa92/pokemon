@@ -18,7 +18,7 @@ export function getPokemonDetails(): PokemonDetailsModel {
   return {
     name: "test",
     weight: 71,
-    abilites: [
+    abilities: [
       {
         ability: { name: "bla", url: "https//test.dk" },
         is_hidden: false,
@@ -27,7 +27,9 @@ export function getPokemonDetails(): PokemonDetailsModel {
     ],
     sprites: {
       other: {
-        "official-artwork": "https://test.dk",
+        "official-artwork": {
+          front_default: "https://test.dk",
+        },
       },
     },
   };

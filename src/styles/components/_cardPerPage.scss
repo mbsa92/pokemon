@@ -1,0 +1,9 @@
+.CardPerPage {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+
+  &-title {
+    margin-right: 16px;
+  }
+}

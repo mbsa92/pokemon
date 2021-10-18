@@ -1,5 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
 import PokemonCard from "@/components/PokemonCard.vue";
+import { getPokemonDetails } from "../utils/testdata";
 
 describe("PokemonCard.vue", () => {
   it("renders component", () => {
@@ -8,6 +9,10 @@ describe("PokemonCard.vue", () => {
   });
 
   function shollowMountComponent() {
-    return shallowMount(PokemonCard);
+    return shallowMount(PokemonCard, {
+      props: {
+        pokemon: getPokemonDetails,
+      },
+    });
   }
 });

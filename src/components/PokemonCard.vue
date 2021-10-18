@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from "vue";
+import { defineComponent, PropType, ref, onMounted } from "vue";
 import { PokemonDetailsModel } from "@/models/pokemonDetails.model";
 
 export default defineComponent({
@@ -30,12 +30,17 @@ export default defineComponent({
   props: {
     pokemon: {
       type: Object as PropType<PokemonDetailsModel>,
+      required: true,
     },
   },
   setup(props) {
-    const imgUrl = ref(
-      props.pokemon?.sprites.other["official-artwork"].front_default
-    );
+    const imgUrl = ref();
+
+    onMounted(async () => {
+      imgUrl.value =
+        props.pokemon.sprites.other["official-artwork"].front_default;
+    });
+
     return { imgUrl };
   },
 });

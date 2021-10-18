@@ -29,12 +29,16 @@ export class PokemonStore extends VuexModule {
     this.pokemons = pokemon;
   }
 
+  @mutation removePokemons() {
+    this.pokemonsWithDetails = [];
+  }
+
   @mutation setPokemonsWithDetails(pokemonDetails: PokemonDetailsModel) {
     this.pokemonsWithDetails.push(pokemonDetails);
   }
 
-  @action async getPokemons(): Promise<void> {
-    const result: SearchPokemonModel = await pokemonService.getPokemon();
+  @action async getPokemons(limit: string): Promise<void> {
+    const result: SearchPokemonModel = await pokemonService.getPokemon(limit);
     this.setPokemons(result);
   }
 
