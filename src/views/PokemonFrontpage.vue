@@ -7,6 +7,7 @@
         <PokemonCard :pokemon="details" />
       </div>
     </div>
+    <Paging @click="skipPage" />
   </div>
 </template>
 
@@ -16,24 +17,29 @@ import { vxm } from "../store/store";
 import { PokemonDetailsModel } from "@/models/pokemonDetails.model";
 import PokemonCard from "@/components/PokemonCard.vue";
 import CardPerPage from "@/components/CardPerPage.vue";
+import Paging from "@/components/Paging.vue";
 
 export default defineComponent({
   name: "PokemonFrontpage",
-  components: { PokemonCard, CardPerPage },
+  components: { PokemonCard, CardPerPage, Paging },
   setup() {
     const pokemonDetails = computed<PokemonDetailsModel[]>(
       () => vxm.pokemon.allPokemonsWithDetails
     );
 
     const defaultLimit = "20";
+    const defaultOffset = "0";
 
     onMounted(async () => {
-      getPokemons(defaultLimit);
+      getPokemons(defaultLimit, defaultOffset);
     });
 
-    async function getPokemons(limit: string) {
+    async function getPokemons(limit: string, offset: string) {
+      vxm.pokemon.setLimit(limit);
+      vxm.pokemon.setOffset(offset);
       vxm.pokemon.removePokemons();
-      await vxm.pokemon.getPokemons(limit);
+      const data = { limit, offset };
+      await vxm.pokemon.getPokemons(data);
       const pokomons = vxm.pokemon.allPokemon;
       pokomons.results.forEach((pokemon: any) => {
         vxm.pokemon.getDetails(pokemon.url);
@@ -41,9 +47,30 @@ export default defineComponent({
     }
 
     function perpage(value: string) {
-      getPokemons(value);
+      getPokemons(value, "0");
     }
-    return { pokemonDetails, perpage, defaultLimit, getPokemons };
+
+    function skipPage(value: string) {
+      const offset = vxm.pokemon.aktiveOffset;
+      const limit = vxm.pokemon.aktiveLimit;
+      if (value === "next") {
+        const skipOffset = parseFloat(offset) + 20;
+        vxm.pokemon.setOffset(String(skipOffset));
+        getPokemons(limit, String(skipOffset));
+      } else if (value === "prev") {
+        const skipOffset = parseFloat(offset) - 20;
+        vxm.pokemon.setOffset(String(skipOffset));
+        getPokemons(limit, String(skipOffset));
+      }
+    }
+    return {
+      pokemonDetails,
+      perpage,
+      defaultLimit,
+      getPokemons,
+      skipPage,
+      defaultOffset,
+    };
   },
 });
 </script>

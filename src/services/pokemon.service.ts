@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export class PokemonService {
-  async getPokemon(limit: string) {
+  async getPokemon(limit: string, offset: string) {
     try {
       const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=0`
+        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
       );
       return response.data;
     } catch (e) {

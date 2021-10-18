@@ -1,0 +1,10 @@
+.Paging {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0;
+
+  &-next,
+  &-prev {
+    margin: 0 8px;
+  }
+}

@@ -16,9 +16,19 @@ export class PokemonStore extends VuexModule {
     results: [],
   };
   private pokemonsWithDetails: PokemonDetailsModel[] = [];
+  private limit = "";
+  private offset = "";
 
   get allPokemon(): SearchPokemonModel {
     return this.pokemons;
+  }
+
+  get aktiveLimit(): string {
+    return this.limit;
+  }
+
+  get aktiveOffset(): string {
+    return this.offset;
   }
 
   get allPokemonsWithDetails(): PokemonDetailsModel[] {
@@ -37,8 +47,22 @@ export class PokemonStore extends VuexModule {
     this.pokemonsWithDetails.push(pokemonDetails);
   }
 
-  @action async getPokemons(limit: string): Promise<void> {
-    const result: SearchPokemonModel = await pokemonService.getPokemon(limit);
+  @mutation setLimit(limit: string) {
+    this.limit = limit;
+  }
+
+  @mutation setOffset(offset: string) {
+    this.offset = offset;
+  }
+
+  @action async getPokemons(data: {
+    limit: string;
+    offset: string;
+  }): Promise<void> {
+    const result: SearchPokemonModel = await pokemonService.getPokemon(
+      data.limit,
+      data.offset
+    );
     this.setPokemons(result);
   }
 
