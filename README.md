@@ -12,18 +12,6 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
 ### Run unit test
 
 ```
@@ -31,8 +19,6 @@ npm run test:unit
 ```
 
 ### Completed task
-
-Create a web application to list all Pokémon and show paginated results
 
 - User should be shown the Pokémons in a card-based layout (click to see best practices)
 - Each card should contain the image of the Pokémon, Name, Height, Weight, List of abilities.
